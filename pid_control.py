@@ -14,13 +14,14 @@ def response(errors, speed, limit, error_prior, integral_prior):
     Kp = 0.3
     Kl = 0.2
     Kd = 0.1
+    
 
     error = limit - speed
     integral = integral_prior + error
     derivative = (error-error_prior)
     # derivative = (error-error_prior)/speed if speed!=0 else (error-error_prior)/0.01
 
-    speed = Kp*error + Kl*integral + Kd*derivative
+    speed = Kp*error + Kl*integral + Kd*derivative + bias
 
     return speed, error, integral
 
